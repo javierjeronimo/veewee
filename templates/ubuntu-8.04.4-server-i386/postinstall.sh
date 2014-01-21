@@ -24,12 +24,12 @@ cp /etc/sudoers /etc/sudoers.orig
 sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 #Installing ruby
-wget http://rubyforge.org/frs/download.php/71096/ruby-enterprise-1.8.7-2010.02.tar.gz
-tar xzvf ruby-enterprise-1.8.7-2010.02.tar.gz
-./ruby-enterprise-1.8.7-2010.02/installer -a /opt/ruby --no-dev-docs --dont-install-useful-gems
+wget http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p484.tar.gz
+tar xzvf ruby-1.9.3-p484.tar.gz
+cd ruby-1.9.3-p484 && ./configure --prefix=/opt/ruby && make && make install
 echo 'PATH=$PATH:/opt/ruby/bin/'> /etc/profile.d/rubyenterprise.sh
-rm -rf ./ruby-enterprise-1.8.7-2010.02/
-rm ruby-enterprise-1.8.7-2010.02.tar.gz
+rm -rf ./ruby-1.9.3-p484/
+rm ruby-1.9.3-p484.tar.gz
 
 #Installing chef & Puppet
 /opt/ruby/bin/gem install chef --no-ri --no-rdoc
